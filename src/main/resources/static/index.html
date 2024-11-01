@@ -1,67 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Form Example</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
+<head>
+    <title>Form Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Lineal Search</h1>
+    <form action="/linearSearch">
+        <label for="list">List:</label><br>
+        <input type="text" id="list" name="list"><br><br>
         
-
-        <h1>Lineal Search</h1>
-        <form action="/linearSearch">
-            <label for="list">List:</label><br>
-            <input type="text" id="list" name="list"><br><br>
+        <label for="number">Number:</label><br>
+        <input type="text" id="number" name="number" ><br><br>
+        
+        <input type="button" value="Submit" onclick="loadPostMsg()">
+    </form>
+    
+    <div id="postrespmsg"></div>
+    
+    <script>
+        function loadPostMsg(){
+            let list = document.getElementById('list').value.split(',');
+            let value = document.getElementById('number').value;
             
-            <label for="number">Number:</label><br>
-            <input type="text" id="number" name="number" ><br><br>
+            let url = "/linearSearch";
             
-            <input type="button" value="Submit" onclick="loadPostMsg()">
-        </form>
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    list: list.join(','),
+                    value: value
+                })
+            })
+            .then(response => response.text())
+            .then(data => document.getElementById("postrespmsg").innerHTML = data)
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+    
+    <h1>Binary Search</h1>
+    <form action="/binarySearch">
+        <label for="list1">List:</label><br>
+        <input type="text" id="list1" name="list1"><br><br>
         
-        <div id="postrespmsg"></div>
+        <label for="number1">Number:</label><br>
+        <input type="text" id="number1" name="number1" ><br><br>
         
-        <script>
-            function loadPostMsg(){
+        <input type="button" value="Submit" onclick="loadPostMsg1()">
+    </form>
+    
+    <div id="postrespmsg1"></div>
+    
+    <script>
+        function loadPostMsg1(){
+            let list = document.getElementById('list1').value.split(',');
+            let value = document.getElementById('number1').value;
             
-                let list = document.getElementById('list').value.split(',');
-                let value = document.getElementById('number').value;
-             
-                let url = "/linearSearch?list=" + list + "&value=" + value;
-                
-                fetch (url, {method: 'POST'})
-                    .then(x => x.text())
-                    .then(y => document.getElementById("postrespmsg").innerHTML = y);
-            }
-        </script>
-        
-        <h1>Binary Search</h1>
-        <form action="/linearSearch">
-            <label for="list1">List:</label><br>
-            <input type="text" id="list1" name="list1"><br><br>
+            let url = "/binarySearch";
             
-            <label for="number1">Number:</label><br>
-            <input type="text" id="number1" name="number1" ><br><br>
-            
-            <input type="button" value="Submit" onclick="loadPostMsg1()">
-        </form>
-        
-        <div id="postrespmsg1"></div>
-        
-        <script>
-            function loadPostMsg1(){
-            
-                let list = document.getElementById('list').value.split(',');
-                let value = document.getElementById('number').value;
-             
-                let url = "/binarySearch?list=" + list + "&value=" + value;
-                
-                fetch (url, {method: 'POST'})
-                    .then(x => x.text())
-                    .then(y => document.getElementById("postrespmsg1").innerHTML = y);
-            }
-        </script>
-        
-        
-    </body>
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    list: list.join(','),
+                    value: value
+                })
+            })
+            .then(response => response.text())
+            .then(data => document.getElementById("postrespmsg1").innerHTML = data)
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
 </html>

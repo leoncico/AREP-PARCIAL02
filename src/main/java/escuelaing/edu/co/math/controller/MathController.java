@@ -5,7 +5,11 @@
 package escuelaing.edu.co.math.controller;
 
 import escuelaing.edu.co.math.services.MathService;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MathController {
     
-    public MathService mathService;
+    private final MathService mathService;
     
     @Autowired
     public MathController(MathService mathService){
@@ -28,33 +32,25 @@ public class MathController {
     }
     
     @PostMapping("/linearSearch")
-    public ResponseEntity<?> linealSearch(@RequestParam String list, @RequestParam int value){
-        
-        String[] listString = new String[list.length()];
-        listString = list.split(",");
-        
-        int[] listInt = new int[list.length()];
-        
-        for(int i=0; i<list.length(); i++){
-            listInt[i] = Integer.parseInt(listString[i]);
-        }
-        
-        return new ResponseEntity(mathService.linearSearch(listInt, value), HttpStatus.OK);
+    public ResponseEntity<?> linealSearch(@RequestParam("list") List<Integer> list, @RequestParam("value") int value){
+        int result = mathService.linearSearch(list, value);
+        Map<String, Object> response = new HashMap<>();
+        response.put("operation", "linearSearch");
+        response.put("inputList", list.toString());
+        response.put("value", value);
+        response.put("output", result);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
     
     @PostMapping("/binarySearch")
-    public ResponseEntity<?> binarySearch(@RequestParam String list, @RequestParam int value){
-        
-        String[] listString = new String[list.length()];
-        listString = list.split(",");
-        
-        int[] listInt = new int[list.length()];
-        
-        for(int i=0; i<list.length(); i++){
-            listInt[i] = Integer.parseInt(listString[i]);
-        }
-        
-        return new ResponseEntity(mathService.binarySearch(listInt, value), HttpStatus.OK);
+    public ResponseEntity<?> binarySearch(@RequestParam("list") List<Integer> list, @RequestParam("value") int value){
+        int result = mathService.binarySearch(list, value);
+        Map<String, Object> response = new HashMap<>();
+        response.put("operation", "binarySearch");
+        response.put("inputList", list.toString());
+        response.put("value", value);
+        response.put("output", result);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    
 }
+

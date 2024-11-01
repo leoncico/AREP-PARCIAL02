@@ -4,6 +4,8 @@
  */
 package escuelaing.edu.co.math.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,41 +14,35 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MathService {
-    
-    public int linearSearch(int[] list, int number){
-        int result = -1;
-        
-        for(int i=0;i < list.length;i++){
-            if(list[i] == number){
-                result = i;
+
+    public int linearSearch(List<Integer> list, int number) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) == number) {
+                return i;
             }
         }
-        
-        return result;
+        return -1;
     }
-    
-    public int binarySearch(int[] list, int number){
+
+    public int binarySearch(List<Integer> list, int number) {
         int start = 0;
-        int end = list.length-1;
-        int index = -1;
-        
-        while(start <= end){
-            
-            int middle = start + (end - start);
-            
-            if(list[middle] == number){
-                index = middle;
+        int end = list.size() - 1;
+
+        while (start <= end) {
+            int middle = start + (end - start) / 2;
+
+            if (list.get(middle) == number) {
+                return middle;
             }
-            
-            else if(list[middle] < number){
-                start = middle + 1; 
-            }
-            
-            else{
+
+            if (list.get(middle) < number) {
+                start = middle + 1;
+            } else {
                 end = middle - 1;
             }
         }
-        
-        return index;
+
+        return -1;
     }
 }
+

@@ -13,3 +13,8 @@ Luego de estas implementaciones se generan los archivos jar del servidor proxy j
 teniendo en cuenta que las peticiones del proxy server se deben cambiar hacia la dirección URL que se asignen en EC2, con su respectivo puerto
 asignado en el application properties o en la clase de SpringApplication.
 
+## Avance en Casa
+Pruebas de la aplicacion corriendo localmente
+![](img/01.PNG)
+
+
