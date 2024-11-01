@@ -17,4 +17,15 @@ asignado en el application properties o en la clase de SpringApplication.
 Pruebas de la aplicacion corriendo localmente
 ![](img/01.PNG)
 
-También logré implementar el proxy localmente
+También logré implementar el proxy localmente y el despliegue en AWS: https://youtu.be/tj-RUvNwIf0
+![](img/02.PNG)
+
+Para esto separé el proyecto en dos subproyectos. Uno con el front y el servidor proxy y el otro subproyecto con los services del back.
+
+![](img/05.PNG)
+
+Posteriormente habilité habilité la opción de cambiar los puertos en donde se ejecuta spring y se ejecutaron 2 instancias con el back y una para front y proxy
+![](img/03.PNG)
+
+Finalmente agregé las direcciones de las dos instacias en la lista de servidores de services disponibles
+![](img/04.PNG)
