@@ -17,4 +17,4 @@ asignado en el application properties o en la clase de SpringApplication.
 Pruebas de la aplicacion corriendo localmente
 ![](img/01.PNG)
 
-
+También logré implementar el proxy localmente

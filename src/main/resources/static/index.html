@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Lineal Search</h1>
-    <form action="/linearSearch">
+    <form action="/proxy/linearSearch">
         <label for="list">List:</label><br>
         <input type="text" id="list" name="list"><br><br>
         
@@ -24,7 +24,7 @@
             let list = document.getElementById('list').value.split(',');
             let value = document.getElementById('number').value;
             
-            let url = "/linearSearch";
+            let url = "/proxy/linearSearch";
             
             fetch(url, {
                 method: 'POST',
@@ -43,7 +43,7 @@
     </script>
     
     <h1>Binary Search</h1>
-    <form action="/binarySearch">
+    <form action="/proxy/binarySearch">
         <label for="list1">List:</label><br>
         <input type="text" id="list1" name="list1"><br><br>
         
@@ -60,7 +60,7 @@
             let list = document.getElementById('list1').value.split(',');
             let value = document.getElementById('number1').value;
             
-            let url = "/binarySearch";
+            let url = "/proxy/binarySearch";
             
             fetch(url, {
                 method: 'POST',
